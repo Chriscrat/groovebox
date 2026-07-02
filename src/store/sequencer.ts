@@ -19,8 +19,10 @@ function createSequence(track: AnyTrack): InstrumentSequence {
             note: event?.note ?? track.instrument.defaultNote,
         }
     });
+    console.log('Test', track);
     return {
         instrumentId: track.instrument.id,
+        name: track.name,
         steps: steps,
         volume: track.instrument.volume,
         decay: 0.5,
@@ -42,8 +44,8 @@ export const useSequencerStore = defineStore('sequencer', () => {
         activeAmbianceId: null,
     });
 
-    function toggleStep(instrumentId: string, stepIndex: number): void {
-        const seq = state.sequences.find((s) => s.instrumentId === instrumentId);
+    function toggleStep(trackName: string, stepIndex: number): void {
+        const seq = state.sequences.find((s) => s.name === trackName);
         if (!seq) return;
         seq.steps[stepIndex].active = !seq.steps[stepIndex].active;
     }

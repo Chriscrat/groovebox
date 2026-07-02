@@ -12,7 +12,7 @@
                         :src="instrumentImage(seq.instrumentId)"
                         :alt="seq.instrumentId"
                     />
-                    <div class="grid__label">{{ instrumentLabel(seq.instrumentId) }}</div>
+                    <div class="grid__label">{{ seq.name }}</div>
                 </div>
                 <div>
                     <div class="grid__steps">
@@ -25,7 +25,7 @@
                                 'step--current': store.state.currentStep === index && store.state.isPlaying,
                                 'step--beat': index % 4 === 0,
                             }"
-                            @click="store.toggleStep(seq.instrumentId, index)"
+                            @click="store.toggleStep(seq.name, index)"
                         />
                     </div>
                     <div
@@ -73,10 +73,6 @@
     function instrumentConfig(instrumentId: string): Instrument<InstrumentId> | undefined {
         const instruments = activeAmbiance.value?.tracks.map((track) => track.instrument);
         return instruments?.find((inst) => inst.id === instrumentId);
-    }
-
-    function instrumentLabel(instrumentId: string): string {
-        return instrumentConfig(instrumentId)?.name ?? instrumentId.toUpperCase();
     }
 
     function instrumentImage(instrumentId: string): string {

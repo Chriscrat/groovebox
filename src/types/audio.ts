@@ -26,7 +26,6 @@ export interface Instrument<
     TNote extends string = string
 > {
     id: TId;
-    name: string;
     image: string;
     /** Tone.Sampler map — note string to .wav path, e.g. { 'E2': '/samples/...' }. */
     samples: Record<TNote, string>;
@@ -43,6 +42,7 @@ export interface Instrument<
 /** Live sequencer state for one instrument — mutable by the user during a session. */
 export interface InstrumentSequence {
     instrumentId: string;
+    name: string;
     steps: Step[];
     /** Volume override in dB. Initialized from Instrument.volume on preset load. */
     volume: number;
@@ -60,6 +60,7 @@ export type Track<
     TNote extends string = string
 > = {
     instrument: Instrument<TId, TNote>;
+    name: string;
     muted?: boolean;
     solo?: boolean;
     events: Step<TNote>[];

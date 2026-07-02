@@ -1,13 +1,12 @@
 import type { Ambiance, Instrument, Track } from '../../types/audio';
 
 // INSTRUMENTS
-const fx: Instrument<'fx', 'D#5' | 'A#4'> = {
-    id: 'fx',
-    name: 'FX',
-    image: '/instruments/fx.png',
+const lead: Instrument<'lead', 'D#5' | 'A#4'> = {
+    id: 'lead',
+    image: '/instruments/lead.png',
     samples: {
-        'D#5': '/samples/dubstep/skrillex/fx/Woop Sound - Dsharp5.wav',
-        'A#4': '/samples/dubstep/skrillex/fx/Skrillex Clean Voice.wav',
+        'D#5': '/samples/dubstep/skrillex/lead/Woop Sound - Dsharp5.wav',
+        'A#4': '/samples/dubstep/skrillex/lead/Skrillex Clean Voice.wav',
     },
     defaultNote: 'D#5',
     retrigger: true,
@@ -15,12 +14,11 @@ const fx: Instrument<'fx', 'D#5' | 'A#4'> = {
     volume: 0,
 };
 
-const growl: Instrument<'growl'> = {
-    id: 'growl',
-    name: 'Growl',
+const growl: Instrument<'accent'> = {
+    id: 'accent',
     image: '/instruments/growl.png',
     samples: {
-        'G#1': '/samples/dubstep/skrillex/growl/Dubstep Growl - Gsharp1.wav',
+        'G#1': '/samples/dubstep/skrillex/accent/Dubstep Growl - Gsharp1.wav',
     },
     defaultNote: 'G#1',
     retrigger: true,
@@ -30,7 +28,6 @@ const growl: Instrument<'growl'> = {
 
 const bass: Instrument<'bass'> = {
     id: 'bass',
-    name: 'Bass',
     image: '/instruments/bass.png',
     samples: {
         'F#2': '/samples/dubstep/skrillex/bass/Cymatics - Mothership Bass One Shot 12 - Fsharp.wav',
@@ -43,7 +40,6 @@ const bass: Instrument<'bass'> = {
 
 const kick: Instrument<'kick'> = {
     id: 'kick',
-    name: 'Kick',
     image: '/instruments/kick.png',
     samples: {
         'D#4': '/samples/dubstep/raptor/kick/Dubstep Kick 3 Mellow.wav',
@@ -56,7 +52,6 @@ const kick: Instrument<'kick'> = {
 
 const snare: Instrument<'snare'> = {
     id: 'snare',
-    name: 'Snare',
     image: '/instruments/snare.png',
     samples: {
         'G#3': '/samples/dubstep/raptor/snare/Electronic Snare Drum 3 by IanStarGem  - Gsharp3.wav',
@@ -69,7 +64,6 @@ const snare: Instrument<'snare'> = {
 
 const openHat: Instrument<'open-hat'> = {
     id: 'open-hat',
-    name: 'Open hat',
     image: '/instruments/hi-hats.png',
     samples: {
         F8: '/samples/dubstep/raptor/hi-hats/open-hat - F8.wav',
@@ -82,7 +76,6 @@ const openHat: Instrument<'open-hat'> = {
 
 const closedHat: Instrument<'closed-hat'> = {
     id: 'closed-hat',
-    name: 'Closed hat',
     image: '/instruments/hi-hats.png',
     samples: {
         'F#9': '/samples/dubstep/raptor/hi-hats/closed-hat - Fsharp9.wav',
@@ -94,8 +87,9 @@ const closedHat: Instrument<'closed-hat'> = {
 };
 
 // TRACKS
-const fxTrack: Track<'fx'> = {
-    instrument: fx,
+const leadTrack: Track<'lead'> = {
+    instrument: lead,
+    name: 'Vocal',
     muted: false,
     solo: false,
     events: [
@@ -132,6 +126,7 @@ const fxTrack: Track<'fx'> = {
 
 const bassTrack: Track<'bass'> = {
     instrument: bass,
+    name: 'Bass',
     muted: false,
     solo: false,
     events: [
@@ -141,8 +136,9 @@ const bassTrack: Track<'bass'> = {
     ],
 };
 
-const growlTrack: Track<'growl'> = {
+const growlTrack: Track<'accent'> = {
     instrument: growl,
+    name: 'Growl',
     muted: false,
     solo: false,
     events: [
@@ -153,6 +149,7 @@ const growlTrack: Track<'growl'> = {
 
 const kickTrack: Track<'kick'> = {
     instrument: kick,
+    name: 'Kick',
     muted: false,
     solo: false,
     events: [
@@ -164,6 +161,7 @@ const kickTrack: Track<'kick'> = {
 
 const snareTrack: Track<'snare'> = {
     instrument: snare,
+    name: 'Snare',
     muted: false,
     solo: false,
     events: [
@@ -174,6 +172,7 @@ const snareTrack: Track<'snare'> = {
 
 const openHatTrack: Track<'open-hat'> = {
     instrument: openHat,
+    name: 'Open hat',
     muted: false,
     solo: false,
     events: [
@@ -190,6 +189,7 @@ const openHatTrack: Track<'open-hat'> = {
 
 const closedHatTrack: Track<'closed-hat'> = {
     instrument: closedHat,
+    name: 'Closed hat',
     muted: false,
     solo: false,
     events: [
@@ -209,7 +209,7 @@ export const skrillex: Ambiance = {
     name: 'Skrillex',
     steps: 16,
     tracks: [
-        fxTrack,
+        leadTrack,
         growlTrack,
         bassTrack,
         kickTrack,

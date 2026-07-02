@@ -3,9 +3,9 @@ export type InstrumentId =
     | 'kick'
     | 'snare'
     | 'bass'
-    | 'sub'
-    | 'growl'
+    | 'sub-bass'
+    | 'harmony'
     | 'lead'
-    | 'fx'
+    | 'accent'
     | 'open-hat'
     | 'closed-hat';
