@@ -124,9 +124,11 @@ const bassTrack: Track<'bass'> = {
     muted: false,
     solo: false,
     events: [
-        { step: 2, note: 'F3' },
-        { step: 6, note: 'F3' },
-        { step: 10, note: 'F3' },
+        { step: 0, note: 'D#4' },
+        { step: 4, note: 'F#2' },
+        { step: 9, note: 'G#2' },
+        { step: 12, note: 'F3' },
+        { step: 13, note: 'F3' },
         { step: 14, note: 'F3' },
     ],
 };
