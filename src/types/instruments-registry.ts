@@ -4,8 +4,8 @@ export type InstrumentId =
     | 'snare'
     | 'bass'
     | 'sub-bass'
-    | 'harmony'
     | 'lead'
+    | 'chords'
     | 'accent'
     | 'open-hat'
     | 'closed-hat';

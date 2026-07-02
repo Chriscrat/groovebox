@@ -3,7 +3,19 @@ import type { Ambiance, Instrument, Track } from '../../types/audio';
 // INSTRUMENTS
 const accent: Instrument<'accent'>  = {
     id: 'accent',
-    image: '/instruments/growl.png',
+    image: '/instruments/accent.png',
+    samples: {
+        'F4': '/samples/lo-fi/night-rain/texture/accent/Motown Vocal Chops E Minor.wav'
+    },
+    defaultNote: 'F4',
+    retrigger: false,
+    maxDuration: '8n',
+    volume: -3,
+};
+
+const lead: Instrument<'lead'>  = {
+    id: 'lead',
+    image: '/instruments/lead.png',
     samples: {
         'A#1': '/samples/lo-fi/night-rain/lead/Night Train One Shot.wav'
     },
@@ -13,44 +25,24 @@ const accent: Instrument<'accent'>  = {
     volume: -3,
 };
 
-// const bass: Instrument<'bass'> = {
-//     id: 'bass',
-//     image: '/instruments/bass.png',
-//     samples: {
-//     },
-//     defaultNote: '',
-//     retrigger: true,
-//     maxDuration: '4n',
-//     volume: -3,
-// };
-
-// const sub: Instrument<'sub-bass'> = {
-//     id: 'sub-bass',
-//     image: '/instruments/bass.png',
-//     samples: {
-//     },
-//     defaultNote: '',
-//     retrigger: true,
-//     maxDuration: '4n',
-//     volume: -3,
-// };
-
-// const growl: Instrument<'accent'> = {
-//     id: 'accent',
-//     image: '/instruments/growl.png',
-//     samples: {
-//     },
-//     defaultNote: '',
-//     retrigger: true,
-//     maxDuration: '4n',
-//     volume: -1,
-// };
+const chords: Instrument<'chords', 'B3' | 'C4'>  = {
+    id: 'chords',
+    image: '/instruments/piano.png',
+    samples: {
+        B3: '/samples/lo-fi/night-rain/harmony/chords/Rhodes Chord B Major Loop.wav',
+        C4: '/samples/lo-fi/night-rain/harmony/chords/Rhodes Chord C Minor Loop.wav',
+    },
+    defaultNote: 'B3',
+    retrigger: false,
+    maxDuration: '8n',
+    volume: -3,
+};
 
 const kick: Instrument<'kick'> = {
     id: 'kick',
     image: '/instruments/kick.png',
     samples: {
-        'C#2': '/samples/lo-fi/night-rain/kick/Lo Fi Kick C Major.wav',
+        'C#2': '/samples/lo-fi/night-rain/rythm/kick/Lo Fi Kick C Major.wav',
     },
     defaultNote: 'C#2',
     retrigger: true,
@@ -62,7 +54,7 @@ const snare: Instrument<'snare'> = {
     id: 'snare',
     image: '/instruments/snare.png',
     samples: {
-        'F#5': '/samples/lo-fi/night-rain/snare/Lo Fi Snare.wav',
+        'F#5': '/samples/lo-fi/night-rain/rythm/snare/Lo Fi Snare.wav',
     },
     defaultNote: 'F#5',
     retrigger: true,
@@ -74,7 +66,7 @@ const openHat: Instrument<'open-hat'> = {
     id: 'open-hat',
     image: '/instruments/hi-hats.png',
     samples: {
-        'B-1': '/samples/lo-fi/night-rain/hi-hats/Lo-Fi Open Hi-Hat.wav'
+        'B-1': '/samples/lo-fi/night-rain/rythm/hi-hats/Lo-Fi Open Hi-Hat.wav'
     },
     defaultNote: 'B-1',
     retrigger: true,
@@ -86,7 +78,7 @@ const closedHat: Instrument<'closed-hat'> = {
     id: 'closed-hat',
     image: '/instruments/hi-hats.png',
     samples: {
-        D8: '/samples/lo-fi/night-rain/hi-hats/Lo-Fi Closed Hi-Hat C Major.wav'
+        D8: '/samples/lo-fi/night-rain/rythm/hi-hats/Lo-Fi Closed Hi-Hat C Major.wav'
     },
     defaultNote: 'D8',
     retrigger: true,
@@ -97,46 +89,47 @@ const closedHat: Instrument<'closed-hat'> = {
 // TRACKS
 const accentTrack: Track<'accent'> = {
     instrument: accent,
-    name: 'Ambient',
+    name: 'Vocal',
     muted: false,
     solo: false,
     events: [
-        { step: 0 },
-        { step: 2 },
-        { step: 4 },
-        { step: 6 },
-        { step: 8 },
-        { step: 10 },
-        { step: 12 },
-        { step: 14 },
+        { step: 15 },
     ],
     volume: -15,
     decay: 1
 };
 
-// const bassTrack: Track<'bass'> = {
-//     instrument: bass,
-//     name: 'Electric bass',
-//     muted: false,
-//     solo: false,
-//     events: [],
-// };
+const leadTrack: Track<'lead'> = {
+    instrument: lead,
+    name: 'Lead',
+    muted: false,
+    solo: false,
+    events: [
+        { step: 0 },
+        { step: 4 },
+        { step: 8 },
+        { step: 12 },
+    ],
+    volume: -15,
+    decay: 1
+};
 
-// const subTrack: Track<'sub-bass'> = {
-//     instrument: sub,
-//     name: 'Sub',
-//     muted: false,
-//     solo: false,
-//     events: [],
-// };
-
-// const growlTrack: Track<'accent'> = {
-//     instrument: growl,
-//     name: 'Vinyl',
-//     muted: false,
-//     solo: false,
-//     events: [],
-// };
+const chordsTrack: Track<'chords'> = {
+    instrument: chords,
+    name: 'Chords',
+    muted: false,
+    solo: false,
+    events: [
+        { step: 2, note: 'B3' },
+        { step: 4, note: 'B3' },
+        { step: 6, note: 'B3' },
+        { step: 9, note: 'C4' },
+        { step: 10, note: 'C4' },
+        { step: 12, note: 'B3' },
+        { step: 13, note: 'C4' },
+    ],
+    volume: -10
+};
 
 const snareTrack: Track<'snare'> = {
     instrument: snare,
@@ -151,7 +144,11 @@ const kickTrack: Track<'kick'> = {
     name: 'Kick',
     muted: false,
     solo: false,
-    events: [{ step: 0 }, { step: 8 }],
+    events: [
+        { step: 0 },
+        { step: 8 },
+        { step: 15 }
+    ],
 };
 
 const openHatTrack: Track<'open-hat'> = {
@@ -187,5 +184,13 @@ export const nightRain: Ambiance = {
     id: 'night-rain',
     name: 'Night rain',
     steps: 16,
-    tracks: [accentTrack, kickTrack, snareTrack, openHatTrack, closedHatTrack],
+    tracks: [
+        accentTrack,
+        leadTrack,
+        chordsTrack,
+        kickTrack,
+        snareTrack,
+        openHatTrack,
+        closedHatTrack
+    ],
 };
