@@ -1,6 +1,6 @@
 import type { StylePreset } from '../../types/audio';
 
-import { nightRain } from './cloudy-day';
+import { nightRain } from './night-rain';
 
 export const LOFI_PRESETS: StylePreset = {
     id: 'lo-fi',
