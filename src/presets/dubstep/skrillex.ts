@@ -4,6 +4,7 @@ import type { Ambiance, Instrument, Track } from '../../types/audio';
 const fx: Instrument<'fx', 'D#5' | 'A#4'> = {
     id: 'fx',
     name: 'FX',
+    image: '/instruments/fx.png',
     samples: {
         'D#5': '/samples/dubstep/skrillex/fx/Woop Sound - Dsharp5.wav',
         'A#4': '/samples/dubstep/skrillex/fx/Skrillex Clean Voice.wav',
@@ -17,6 +18,7 @@ const fx: Instrument<'fx', 'D#5' | 'A#4'> = {
 const growl: Instrument<'growl'> = {
     id: 'growl',
     name: 'Growl',
+    image: '/instruments/growl.png',
     samples: {
         'G#1': '/samples/dubstep/skrillex/growl/Dubstep Growl - Gsharp1.wav',
     },
@@ -29,6 +31,7 @@ const growl: Instrument<'growl'> = {
 const bass: Instrument<'bass'> = {
     id: 'bass',
     name: 'Bass',
+    image: '/instruments/bass.png',
     samples: {
         'F#2': '/samples/dubstep/skrillex/bass/Cymatics - Mothership Bass One Shot 12 - Fsharp.wav',
     },
@@ -41,6 +44,7 @@ const bass: Instrument<'bass'> = {
 const kick: Instrument<'kick'> = {
     id: 'kick',
     name: 'Kick',
+    image: '/instruments/kick.png',
     samples: {
         'D#4': '/samples/dubstep/raptor/kick/Dubstep Kick 3 Mellow.wav',
     },
@@ -53,6 +57,7 @@ const kick: Instrument<'kick'> = {
 const snare: Instrument<'snare'> = {
     id: 'snare',
     name: 'Snare',
+    image: '/instruments/snare.png',
     samples: {
         'G#3': '/samples/dubstep/raptor/snare/Electronic Snare Drum 3 by IanStarGem  - Gsharp3.wav',
     },
@@ -65,6 +70,7 @@ const snare: Instrument<'snare'> = {
 const openHat: Instrument<'open-hat'> = {
     id: 'open-hat',
     name: 'Open hat',
+    image: '/instruments/hi-hats.png',
     samples: {
         F8: '/samples/dubstep/raptor/hi-hats/open-hat - F8.wav',
     },
@@ -77,6 +83,7 @@ const openHat: Instrument<'open-hat'> = {
 const closedHat: Instrument<'closed-hat'> = {
     id: 'closed-hat',
     name: 'Closed hat',
+    image: '/instruments/hi-hats.png',
     samples: {
         'F#9': '/samples/dubstep/raptor/hi-hats/closed-hat - Fsharp9.wav',
     },
@@ -181,8 +188,8 @@ const openHatTrack: Track<'open-hat'> = {
     ],
 };
 
-const closedHatTrack: Track<'open-hat'> = {
-    instrument: openHat,
+const closedHatTrack: Track<'closed-hat'> = {
+    instrument: closedHat,
     muted: false,
     solo: false,
     events: [

@@ -27,6 +27,7 @@ export interface Instrument<
 > {
     id: TId;
     name: string;
+    image: string;
     /** Tone.Sampler map — note string to .wav path, e.g. { 'E2': '/samples/...' }. */
     samples: Record<TNote, string>;
     /** Note played when a step carries no note override. Must be one of the sample notes. */

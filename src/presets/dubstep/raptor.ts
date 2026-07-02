@@ -4,6 +4,7 @@ import type { Ambiance, Instrument, Track } from '../../types/audio';
 const lead: Instrument<'lead', 'D#6' | 'G#2'>  = {
     id: 'lead',
     name: 'Lead',
+    image: '/instruments/sound.png',
     samples: {
         'D#6': '/samples/dubstep/raptor/lead/Cymatics - Titan Synth One Shot 17 - Dsharp6.wav',
         'G#2': '/samples/dubstep/raptor/lead/Cymatics - Titan Synth One Shot 71 - Gsharp2.wav',
@@ -17,6 +18,7 @@ const lead: Instrument<'lead', 'D#6' | 'G#2'>  = {
 const bass: Instrument<'bass', 'D#4' | 'F3'> = {
     id: 'bass',
     name: 'Bass',
+    image: '/instruments/bass.png',
     samples: {
         'D#4': '/samples/dubstep/raptor/bass/Cymatics - Raptor Bass One Shot 12 - Dsharp4.wav',
         F3: '/samples/dubstep/raptor/bass/Cymatics - Raptor Bass One Shot 39 - F3.wav',
@@ -30,6 +32,7 @@ const bass: Instrument<'bass', 'D#4' | 'F3'> = {
 const sub: Instrument<'sub', 'F#2' | 'G#5'> = {
     id: 'sub',
     name: 'Sub',
+    image: '/instruments/bass.png',
     samples: {
         'F#2': '/samples/dubstep/raptor/sub/Cymatics - Bass One Shot 51 - Fsharp2.wav',
         'G#5': '/samples/dubstep/raptor/sub/Cymatics - Bass One Shot 60 - Gsharp5.wav',
@@ -43,6 +46,7 @@ const sub: Instrument<'sub', 'F#2' | 'G#5'> = {
 const growl: Instrument<'growl', 'F#2' | 'G#2' | 'A2'> = {
     id: 'growl',
     name: 'Growl',
+    image: '/instruments/growl.png',
     samples: {
         'F#2': '/samples/dubstep/raptor/growl/Brostep Bass Growl - Fsharp2 Minor.wav',
         'G#2': '/samples/dubstep/raptor/growl/Distorted Tearout High Growl - Gsharp2.wav',
@@ -57,6 +61,7 @@ const growl: Instrument<'growl', 'F#2' | 'G#2' | 'A2'> = {
 const kick: Instrument<'kick'> = {
     id: 'kick',
     name: 'Kick',
+    image: '/instruments/kick.png',
     samples: {
         'D#4': '/samples/dubstep/raptor/kick/Dubstep Kick 3 Mellow.wav',
     },
@@ -69,6 +74,7 @@ const kick: Instrument<'kick'> = {
 const snare: Instrument<'snare'> = {
     id: 'snare',
     name: 'Snare',
+    image: '/instruments/snare.png',
     samples: {
         'G#3': '/samples/dubstep/raptor/snare/Electronic Snare Drum 3 by IanStarGem  - Gsharp3.wav',
     },
@@ -81,6 +87,7 @@ const snare: Instrument<'snare'> = {
 const openHat: Instrument<'open-hat'> = {
     id: 'open-hat',
     name: 'Open hat',
+    image: '/instruments/hi-hats.png',
     samples: {
         F8: '/samples/dubstep/raptor/hi-hats/open-hat - F8.wav',
     },
@@ -93,6 +100,7 @@ const openHat: Instrument<'open-hat'> = {
 const closedHat: Instrument<'closed-hat'> = {
     id: 'closed-hat',
     name: 'Closed hat',
+    image: '/instruments/hi-hats.png',
     samples: {
         'F#9': '/samples/dubstep/raptor/hi-hats/closed-hat - Fsharp9.wav',
     },
