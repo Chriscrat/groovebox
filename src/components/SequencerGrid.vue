@@ -42,7 +42,7 @@
                                     v-if="step.active"
                                     class="note-btn"
                                     :title="`Clic pour changer de note`"
-                                    @click="cycleNote(seq.instrumentId, index)"
+                                    @click="cycleNote(seq.instrumentId, seq.name, index)"
                                 >
                                     {{ resolveStepNote(seq, index) }}
                                 </button>
@@ -88,15 +88,15 @@
         return seq.steps[stepIndex].note ?? instrumentConfig(seq.instrumentId)?.defaultNote ?? '';
     }
 
-    function cycleNote(instrumentId: string, stepIndex: number): void {
+    function cycleNote(instrumentId:string, trackName: string, stepIndex: number): void {
         const config = instrumentConfig(instrumentId);
         if (!config) return;
         const notes = Object.keys(config.samples);
-        const seq = store.state.sequences.find((s) => s.instrumentId === instrumentId);
+        const seq = store.state.sequences.find((s) => s.name === trackName);
         if (!seq) return;
         const current = resolveStepNote(seq, stepIndex);
         const next = notes[(notes.indexOf(current) + 1) % notes.length];
-        store.setStepNote(instrumentId, stepIndex, next);
+        store.setStepNote(trackName, stepIndex, next);
     }
 </script>
 

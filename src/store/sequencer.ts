@@ -19,7 +19,6 @@ function createSequence(track: AnyTrack): InstrumentSequence {
             note: event?.note ?? track.instrument.defaultNote,
         }
     });
-    console.log('Test', track);
     return {
         instrumentId: track.instrument.id,
         name: track.name,
@@ -50,8 +49,8 @@ export const useSequencerStore = defineStore('sequencer', () => {
         seq.steps[stepIndex].active = !seq.steps[stepIndex].active;
     }
 
-    function setStepNote(instrumentId: string, stepIndex: number, note: string | undefined): void {
-        const seq = state.sequences.find((s) => s.instrumentId === instrumentId);
+    function setStepNote(trackName:string, stepIndex: number, note: string | undefined): void {
+        const seq = state.sequences.find((s) => s.name === trackName);
         if (!seq) return;
         seq.steps[stepIndex].note = note;
     }
