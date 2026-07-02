@@ -3,10 +3,10 @@ import type { Ambiance, Instrument, Track } from '../../types/audio';
 // INSTRUMENTS
 const lead: Instrument<'lead', 'D#6' | 'G#2'>  = {
     id: 'lead',
-    image: '/instruments/growl.png',
+    image: '/instruments/lead.png',
     samples: {
-        'D#6': '/samples/dubstep/raptor/lead/Cymatics - Titan Synth One Shot 17 - Dsharp6.wav',
-        'G#2': '/samples/dubstep/raptor/lead/Cymatics - Titan Synth One Shot 71 - Gsharp2.wav',
+        'D#6': '/samples/dubstep/raptor/melody/lead/Cymatics - Titan Synth One Shot 17 - Dsharp6.wav',
+        'G#2': '/samples/dubstep/raptor/melody/lead/Cymatics - Titan Synth One Shot 71 - Gsharp2.wav',
     },
     defaultNote: 'D#6',
     retrigger: true,
@@ -18,10 +18,10 @@ const bass: Instrument<'bass', 'D#4' | 'F3' | 'F#2' | 'G#2'> = {
     id: 'bass',
     image: '/instruments/bass.png',
     samples: {
-        'D#4': '/samples/dubstep/raptor/bass/Cymatics - Raptor Bass One Shot 12 - Dsharp4.wav',
-        F3: '/samples/dubstep/raptor/bass/Cymatics - Raptor Bass One Shot 39 - F3.wav',
-        'F#2': '/samples/dubstep/raptor/bass/Brostep Bass Growl - Fsharp2 Minor.wav',
-        'G#2': '/samples/dubstep/raptor/bass/Distorted Tearout High Growl - Gsharp2.wav',
+        'D#4': '/samples/dubstep/raptor/low/bass/Cymatics - Raptor Bass One Shot 12 - Dsharp4.wav',
+        F3: '/samples/dubstep/raptor/low/bass/Cymatics - Raptor Bass One Shot 39 - F3.wav',
+        'F#2': '/samples/dubstep/raptor/low/bass/Brostep Bass Growl - Fsharp2 Minor.wav',
+        'G#2': '/samples/dubstep/raptor/low/bass/Distorted Tearout High Growl - Gsharp2.wav',
     },
     defaultNote: 'D#4',
     retrigger: true,
@@ -33,8 +33,8 @@ const sub: Instrument<'sub-bass', 'F#2' | 'G#5'> = {
     id: 'sub-bass',
     image: '/instruments/sub.png',
     samples: {
-        'F#2': '/samples/dubstep/raptor/sub/Cymatics - Bass One Shot 51 - Fsharp2.wav',
-        'G#5': '/samples/dubstep/raptor/sub/Cymatics - Bass One Shot 60 - Gsharp5.wav',
+        'F#2': '/samples/dubstep/raptor/low/sub/Cymatics - Bass One Shot 51 - Fsharp2.wav',
+        'G#5': '/samples/dubstep/raptor/low/sub/Cymatics - Bass One Shot 60 - Gsharp5.wav',
     },
     defaultNote: 'F#2',
     retrigger: true,
@@ -46,7 +46,7 @@ const kick: Instrument<'kick'> = {
     id: 'kick',
     image: '/instruments/kick.png',
     samples: {
-        'D#4': '/samples/dubstep/raptor/kick/Dubstep Kick 3 Mellow.wav',
+        'D#4': '/samples/dubstep/raptor/rythm/kick/Dubstep Kick 3 Mellow.wav',
     },
     defaultNote: 'D#4',
     retrigger: true,
@@ -58,7 +58,7 @@ const snare: Instrument<'snare'> = {
     id: 'snare',
     image: '/instruments/snare.png',
     samples: {
-        'G#3': '/samples/dubstep/raptor/snare/Electronic Snare Drum 3 by IanStarGem  - Gsharp3.wav',
+        'G#3': '/samples/dubstep/raptor/rythm/snare/Electronic Snare Drum 3 by IanStarGem  - Gsharp3.wav',
     },
     defaultNote: 'G#3',
     retrigger: true,
@@ -70,7 +70,7 @@ const openHat: Instrument<'open-hat'> = {
     id: 'open-hat',
     image: '/instruments/hi-hats.png',
     samples: {
-        F8: '/samples/dubstep/raptor/hi-hats/open-hat - F8.wav',
+        F8: '/samples/dubstep/raptor/rythm/hi-hats/open-hat - F8.wav',
     },
     defaultNote: 'F8',
     retrigger: true,
@@ -82,7 +82,7 @@ const closedHat: Instrument<'closed-hat'> = {
     id: 'closed-hat',
     image: '/instruments/hi-hats.png',
     samples: {
-        'F#9': '/samples/dubstep/raptor/hi-hats/closed-hat - Fsharp9.wav',
+        'F#9': '/samples/dubstep/raptor/rythm/hi-hats/closed-hat - Fsharp9.wav',
     },
     defaultNote: 'F#9',
     retrigger: true,
@@ -97,7 +97,7 @@ const leadMelodyTrack: Track<'lead'> = {
     muted: false,
     solo: false,
     events: [
-        { step: 4, note: 'D#4' },
+        { step: 4, note: 'G#2' },
         { step: 6, note: 'D#6' },
         { step: 7, note: 'D#6' },
         { step: 9, note: 'D#6' },

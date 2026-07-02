@@ -5,8 +5,8 @@ const lead: Instrument<'lead', 'D#5' | 'A#4'> = {
     id: 'lead',
     image: '/instruments/lead.png',
     samples: {
-        'D#5': '/samples/dubstep/skrillex/lead/Woop Sound - Dsharp5.wav',
-        'A#4': '/samples/dubstep/skrillex/lead/Skrillex Clean Voice.wav',
+        'D#5': '/samples/dubstep/skrillex/melody/lead/Woop Sound - Dsharp5.wav',
+        'A#4': '/samples/dubstep/skrillex/melody/lead/Skrillex Clean Voice.wav',
     },
     defaultNote: 'D#5',
     retrigger: true,
@@ -16,9 +16,9 @@ const lead: Instrument<'lead', 'D#5' | 'A#4'> = {
 
 const growl: Instrument<'accent'> = {
     id: 'accent',
-    image: '/instruments/growl.png',
+    image: '/instruments/accent.png',
     samples: {
-        'G#1': '/samples/dubstep/skrillex/accent/Dubstep Growl - Gsharp1.wav',
+        'G#1': '/samples/dubstep/skrillex/texture/accent/Dubstep Growl - Gsharp1.wav',
     },
     defaultNote: 'G#1',
     retrigger: true,
@@ -30,7 +30,7 @@ const bass: Instrument<'bass'> = {
     id: 'bass',
     image: '/instruments/bass.png',
     samples: {
-        'F#2': '/samples/dubstep/skrillex/bass/Cymatics - Mothership Bass One Shot 12 - Fsharp.wav',
+        'F#2': '/samples/dubstep/skrillex/low/bass/Cymatics - Mothership Bass One Shot 12 - Fsharp.wav',
     },
     defaultNote: 'F#2',
     retrigger: true,
@@ -42,7 +42,7 @@ const kick: Instrument<'kick'> = {
     id: 'kick',
     image: '/instruments/kick.png',
     samples: {
-        'D#4': '/samples/dubstep/raptor/kick/Dubstep Kick 3 Mellow.wav',
+        'D#4': '/samples/dubstep/raptor/rythm/kick/Dubstep Kick 3 Mellow.wav',
     },
     defaultNote: 'D#4',
     retrigger: true,
@@ -54,7 +54,7 @@ const snare: Instrument<'snare'> = {
     id: 'snare',
     image: '/instruments/snare.png',
     samples: {
-        'G#3': '/samples/dubstep/raptor/snare/Electronic Snare Drum 3 by IanStarGem  - Gsharp3.wav',
+        'G#3': '/samples/dubstep/raptor/rythm/snare/Electronic Snare Drum 3 by IanStarGem  - Gsharp3.wav',
     },
     defaultNote: 'G#3',
     retrigger: true,
@@ -66,7 +66,7 @@ const openHat: Instrument<'open-hat'> = {
     id: 'open-hat',
     image: '/instruments/hi-hats.png',
     samples: {
-        F8: '/samples/dubstep/raptor/hi-hats/open-hat - F8.wav',
+        F8: '/samples/dubstep/skrillex/rythm/hi-hats/open-hat - F8.wav',
     },
     defaultNote: 'F8',
     retrigger: true,
@@ -78,7 +78,7 @@ const closedHat: Instrument<'closed-hat'> = {
     id: 'closed-hat',
     image: '/instruments/hi-hats.png',
     samples: {
-        'F#9': '/samples/dubstep/raptor/hi-hats/closed-hat - Fsharp9.wav',
+        'F#9': '/samples/dubstep/skrillex/rythm/hi-hats/closed-hat - Fsharp9.wav',
     },
     defaultNote: 'F#9',
     retrigger: true,
