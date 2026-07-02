@@ -103,6 +103,8 @@ const leadMelodyTrack: Track<'lead'> = {
         { step: 9, note: 'D#6' },
         { step: 12, note: 'D#6' },
     ],
+    volume: -1.5,
+    decay: 0.05
 };
 
 const leadGrowlTrack: Track<'lead'> = {
@@ -116,6 +118,8 @@ const leadGrowlTrack: Track<'lead'> = {
         { step: 14, note: 'F#2' },
         { step: 15, note: 'D#6' },
     ],
+    volume: 6,
+    decay: 0.05
 };
 
 const bassTrack: Track<'bass'> = {
@@ -153,7 +157,11 @@ const snareTrack: Track<'snare'> = {
     name: 'Snare',
     muted: false,
     solo: false,
-    events: [{ step: 4 }, { step: 12 }],
+    events: [
+        { step: 4 },
+        { step: 12 }
+    ],
+    volume: 6
 };
 
 const kickTrack: Track<'kick'> = {
@@ -161,7 +169,12 @@ const kickTrack: Track<'kick'> = {
     name: 'Kick',
     muted: false,
     solo: false,
-    events: [{ step: 0 }, { step: 8 }, { step: 15 }],
+    events: [
+        { step: 0 },
+        { step: 8 },
+        { step: 15 }
+    ],
+    volume: 6
 };
 
 const openHatTrack: Track<'open-hat'> = {
@@ -169,7 +182,12 @@ const openHatTrack: Track<'open-hat'> = {
     name: 'Open hat',
     muted: false,
     solo: false,
-    events: [{ step: 1 }, { step: 5 }, { step: 9 }, { step: 13 }],
+    events: [
+        { step: 1 },
+        { step: 5 },
+        { step: 9 },
+        { step: 13 }
+    ],
 };
 
 const closedHatTrack: Track<'closed-hat'> = {
@@ -177,7 +195,16 @@ const closedHatTrack: Track<'closed-hat'> = {
     name: 'Closed hat',
     muted: false,
     solo: false,
-    events: [{ step: 0 }, { step: 2 }, { step: 4 }, { step: 6 }, { step: 8 }, { step: 10 }, { step: 12 }, { step: 14 }],
+    events: [
+        { step: 0 },
+        { step: 2 },
+        { step: 4 },
+        { step: 6 },
+        { step: 8 },
+        { step: 10 },
+        { step: 12 },
+        { step: 14 }
+    ],
 };
 
 // 'Raptor' dubstep's ambiance composition

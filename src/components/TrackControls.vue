@@ -9,7 +9,7 @@
                 step="0.5"
                 :value="sequence.volume"
                 class="slider slider--violet"
-                @input="(e) => store.setInstrumentVolume(sequence.instrumentId, Number((e.target as HTMLInputElement).value))"
+                @input="(e) => store.setInstrumentVolume(sequence.name, Number((e.target as HTMLInputElement).value))"
             />
             <span class="value">{{ sequence.volume > 0 ? '+' : '' }}{{ sequence.volume }}dB</span>
         </div>
@@ -23,7 +23,7 @@
                 step="0.01"
                 :value="sequence.decay"
                 class="slider slider--violet"
-                @input="(e) => store.setInstrumentDecay(sequence.instrumentId, Number((e.target as HTMLInputElement).value))"
+                @input="(e) => store.setInstrumentDecay(sequence.name, Number((e.target as HTMLInputElement).value))"
             />
             <span class="value">{{ sequence.decay.toFixed(2) }}</span>
         </div>

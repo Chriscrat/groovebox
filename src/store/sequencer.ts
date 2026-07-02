@@ -23,8 +23,8 @@ function createSequence(track: AnyTrack): InstrumentSequence {
         instrumentId: track.instrument.id,
         name: track.name,
         steps: steps,
-        volume: track.instrument.volume,
-        decay: 0.5,
+        volume: track?.volume ?? track.instrument.volume,
+        decay: track?.decay ?? 0.5,
     };
 }
 
@@ -71,14 +71,14 @@ export const useSequencerStore = defineStore('sequencer', () => {
         state.currentStep = index;
     }
 
-    function setInstrumentVolume(instrumentId: string, value: number): void {
-        const seq = state.sequences.find((s) => s.instrumentId === instrumentId);
+    function setInstrumentVolume(trackName: string, value: number): void {
+        const seq = state.sequences.find((s) => s.name === trackName);
         if (!seq) return;
         seq.volume = value;
     }
 
-    function setInstrumentDecay(instrumentId: string, value: number): void {
-        const seq = state.sequences.find((s) => s.instrumentId === instrumentId);
+    function setInstrumentDecay(trackName: string, value: number): void {
+        const seq = state.sequences.find((s) => s.name === trackName);
         if (!seq) return;
         seq.decay = value;
     }

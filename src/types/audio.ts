@@ -64,6 +64,8 @@ export type Track<
     muted?: boolean;
     solo?: boolean;
     events: Step<TNote>[];
+    volume?: number;
+    decay?: number;
 };
 
 /** A track with any valid instrument ID and unconstrained notes — used at runtime boundaries. */
