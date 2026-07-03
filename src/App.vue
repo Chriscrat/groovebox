@@ -70,7 +70,9 @@
         display: flex;
         flex-direction: column;
         padding: 2rem;
-        max-width: 1100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin: 0 auto;
         width: 100%;
     }

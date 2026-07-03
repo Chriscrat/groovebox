@@ -1,6 +1,6 @@
 <template>
     <section class="style-selector">
-        <span class="style-selector__label">STYLE</span>
+        <span class="style-selector__label">PRESETS</span>
         <div class="style-selector__list">
             <button
                 v-for="style in styles"
@@ -11,15 +11,20 @@
                 {{ style.name }}
             </button>
             <div v-if="ambiances && activePresetId" class="ambiance-selector__list">
-                <span class="ambiance-selector__label">AMBIANCE</span>
-                <button
-                    v-for="ambiance in ambiances"
+                <span class="ambiance-selector__label">AMBIANCES</span>
+                <div
+                    v-for="(ambiance, ambianceIndex) in ambiances"
                     :key="ambiance.id"
-                    :class="['ambiance-btn', { 'style-btn--active': activeAmbianceId === ambiance.id }]"
-                    @click="emit('apply-style', activePresetId, ambiance.id)"
                 >
-                    {{ ambiance.name }}
-                </button>
+                    <button
+                        
+                        :class="['style-btn', { 'style-btn--active': activeAmbianceId === ambiance.id }]"
+                        @click="emit('apply-style', activePresetId, ambiance.id)"
+                    >
+                        {{ ambiance.name }}
+                    </button>
+                    {{ ambiances.length -1 !== ambianceIndex ? '/' : '' }}
+                </div>
                 <button class="style-btn style-btn--reset" @click="emit('reset-style')">
                     RESET
                 </button>
@@ -55,7 +60,7 @@ const emit = defineEmits<{
 
 .style-selector__label,
 .ambiance-selector__label  {
-    font-size: 0.65rem;
+    font-size: 1rem;
     letter-spacing: 0.3em;
     color: var(--text-muted);
     white-space: nowrap;
@@ -74,13 +79,12 @@ const emit = defineEmits<{
     margin-left: 4rem;
 }
 
-.style-btn,
-.ambiance-btn {
+.style-btn{
     background: transparent;
     border: 1px solid rgba(0, 255, 255, 0.2);
     color: var(--text-muted);
     font-family: inherit;
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     letter-spacing: 0.2em;
     padding: 0.3rem 0.75rem;
     cursor: pointer;
@@ -108,7 +112,7 @@ const emit = defineEmits<{
 .style-btn--reset {
     border-color: rgba(255, 0, 255, 0.2);
     color: rgba(255, 0, 255, 0.45);
-    margin-left: 0.25rem;
+    margin-left: 3rem;
 }
 
 .style-btn--reset:hover {
