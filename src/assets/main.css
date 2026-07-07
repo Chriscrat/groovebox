@@ -48,9 +48,7 @@ body {
     background: linear-gradient(
         to right,
         var(--neon-cyan) 0%,
-        var(--neon-cyan) calc(var(--val, 50%) * 1%),
-        rgba(0, 255, 255, 0.15) calc(var(--val, 50%) * 1%),
-        rgba(0, 255, 255, 0.15) 100%
+        rgba(10, 96, 93, 0.15) 100%
     );
 }
 
