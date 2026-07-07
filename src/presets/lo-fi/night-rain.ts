@@ -17,7 +17,7 @@ const lead: Instrument<'lead'>  = {
     id: 'lead',
     image: '/instruments/lead.png',
     samples: {
-        'A#1': '/samples/lo-fi/night-rain/lead/Night Train One Shot.wav'
+        'A#1': '/samples/lo-fi/night-rain/melody/lead/Night Train One Shot.wav'
     },
     defaultNote: 'A#1',
     retrigger: false,
@@ -35,7 +35,7 @@ const chords: Instrument<'chords', 'B3' | 'C4'>  = {
     defaultNote: 'B3',
     retrigger: false,
     maxDuration: '8n',
-    volume: -3,
+    volume: -20,
 };
 
 const kick: Instrument<'kick'> = {
@@ -106,9 +106,7 @@ const leadTrack: Track<'lead'> = {
     solo: false,
     events: [
         { step: 0 },
-        { step: 4 },
         { step: 8 },
-        { step: 12 },
     ],
     volume: -15,
     decay: 1
@@ -128,7 +126,7 @@ const chordsTrack: Track<'chords'> = {
         { step: 12, note: 'B3' },
         { step: 13, note: 'C4' },
     ],
-    volume: -10
+    volume: -20
 };
 
 const snareTrack: Track<'snare'> = {
