@@ -13,25 +13,8 @@ interface LoadedInstrument {
 export function useAudioEngine() {
     const store = useSequencerStore()
 
-    let reverb: Tone.Reverb | null = null
-    let delay: Tone.FeedbackDelay | null = null
     let sequence: Tone.Sequence<number> | null = null
     const instruments: LoadedInstrument[] = []
-
-    function buildEffects(): void {
-        reverb = new Tone.Reverb({
-            decay: 2.5,
-            wet: store.state.effects.reverbWet,
-        })
-        reverb.toDestination()
-
-        delay = new Tone.FeedbackDelay({
-            delayTime: '8n',
-            feedback: 0.3,
-            wet: store.state.effects.delayWet,
-        })
-        delay.toDestination()
-    }
 
     function resolveInstrumentConfigs(): Instrument<InstrumentId>[] {
         const preset = STYLE_PRESETS.find((p) => p.id === store.state.activePresetId)
@@ -107,7 +90,6 @@ export function useAudioEngine() {
         try {
             await Tone.start()
             store.setAudioReady(true)
-            buildEffects()
             await loadInstruments()
             buildSequence()
             Tone.getTransport().bpm.value = store.state.bpm
@@ -143,11 +125,7 @@ export function useAudioEngine() {
             stop()
             sequence?.dispose()
             disposeInstruments()
-            reverb?.dispose()
-            delay?.dispose()
             sequence = null
-            reverb = null
-            delay = null
         } catch (err) {
             console.error('Dispose failed:', err)
         }
@@ -156,16 +134,6 @@ export function useAudioEngine() {
     watch(
         () => store.state.bpm,
         (bpm) => { Tone.getTransport().bpm.value = bpm },
-    )
-
-    watch(
-        () => store.state.effects.reverbWet,
-        (wet) => { if (reverb) reverb.wet.value = wet },
-    )
-
-    watch(
-        () => store.state.effects.delayWet,
-        (wet) => { if (delay) delay.wet.value = wet },
     )
 
     watch(

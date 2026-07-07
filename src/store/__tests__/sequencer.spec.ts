@@ -15,25 +15,27 @@ const MINIMAL_AMBIANCE: Ambiance = {
         {
             instrument: {
                 id: 'kick',
-                name: 'Kick',
+                image: '',
                 samples: { 'D#4': '/samples/dubstep/kick.wav' },
                 defaultNote: 'D#4',
                 retrigger: true,
                 maxDuration: '8n',
                 volume: -3,
             },
+            name: 'Kick',
             events: [],
         },
         {
             instrument: {
                 id: 'bass',
-                name: 'Bass',
+                image: '',
                 samples: { 'F3': '/samples/dubstep/bass.wav' },
                 defaultNote: 'F3',
                 retrigger: true,
                 maxDuration: '4n',
                 volume: 0,
             },
+            name: 'Bass',
             events: [],
         },
     ],
@@ -43,7 +45,6 @@ const MINIMAL_PRESET: StylePreset = {
     id: 'dubstep',
     name: 'Dubstep',
     bpm: 70,
-    effects: { reverbWet: 0.5, delayWet: 0.6 },
     ambiances: [MINIMAL_AMBIANCE],
 }
 
@@ -80,8 +81,8 @@ describe('useSequencerStore', () => {
             store.applyPreset(MINIMAL_PRESET, MINIMAL_AMBIANCE)
 
             expect(store.state.sequences).toHaveLength(2)
-            expect(store.state.sequences[0].instrumentId).toBe('kick')
-            expect(store.state.sequences[1].instrumentId).toBe('bass')
+            expect(store.state.sequences[0].name).toBe('Kick')
+            expect(store.state.sequences[1].name).toBe('Bass')
         })
 
         it('should initialise each sequence with 16 steps, inactive when no event', () => {
@@ -89,7 +90,7 @@ describe('useSequencerStore', () => {
 
             store.applyPreset(MINIMAL_PRESET, MINIMAL_AMBIANCE)
 
-            const kick = store.state.sequences.find((s) => s.instrumentId === 'kick')
+            const kick = store.state.sequences.find((s) => s.name === 'Kick')
             expect(kick!.steps).toHaveLength(16)
             expect(kick!.steps.every((s) => s.active === false)).toBe(true)
         })
@@ -98,43 +99,50 @@ describe('useSequencerStore', () => {
             const ambianceWithEvents: Ambiance = {
                 ...MINIMAL_AMBIANCE,
                 tracks: [
-                    {
-                        ...MINIMAL_AMBIANCE.tracks[0],
-                        events: [{ step: 0 }, { step: 8 }],
-                    },
+                    { ...MINIMAL_AMBIANCE.tracks[0], events: [{ step: 0 }, { step: 8 }] },
                     MINIMAL_AMBIANCE.tracks[1],
                 ],
             }
-
             const store = useSequencerStore()
+
             store.applyPreset(MINIMAL_PRESET, ambianceWithEvents)
 
-            const kick = store.state.sequences.find((s) => s.instrumentId === 'kick')
+            const kick = store.state.sequences.find((s) => s.name === 'Kick')
             expect(kick!.steps[0].active).toBe(true)
             expect(kick!.steps[8].active).toBe(true)
             expect(kick!.steps[4].active).toBe(false)
         })
 
-        it('should copy volume from Instrument', () => {
+        it('should copy volume from Instrument when track has no volume override', () => {
             const store = useSequencerStore()
 
             store.applyPreset(MINIMAL_PRESET, MINIMAL_AMBIANCE)
 
-            const bass = store.state.sequences.find((s) => s.instrumentId === 'bass')
-            expect(bass!.volume).toBe(0)
-
-            const kick = store.state.sequences.find((s) => s.instrumentId === 'kick')
-            expect(kick!.volume).toBe(-3)
+            expect(store.state.sequences.find((s) => s.name === 'Bass')!.volume).toBe(0)
+            expect(store.state.sequences.find((s) => s.name === 'Kick')!.volume).toBe(-3)
         })
 
-        it('should set bpm, reverbWet and delayWet from preset', () => {
+        it('should use track volume override when defined', () => {
+            const ambianceWithOverride: Ambiance = {
+                ...MINIMAL_AMBIANCE,
+                tracks: [
+                    { ...MINIMAL_AMBIANCE.tracks[0], volume: 6, events: [] },
+                    MINIMAL_AMBIANCE.tracks[1],
+                ],
+            }
+            const store = useSequencerStore()
+
+            store.applyPreset(MINIMAL_PRESET, ambianceWithOverride)
+
+            expect(store.state.sequences.find((s) => s.name === 'Kick')!.volume).toBe(6)
+        })
+
+        it('should set bpm from preset', () => {
             const store = useSequencerStore()
 
             store.applyPreset(MINIMAL_PRESET, MINIMAL_AMBIANCE)
 
             expect(store.state.bpm).toBe(70)
-            expect(store.state.effects.reverbWet).toBe(0.5)
-            expect(store.state.effects.delayWet).toBe(0.6)
         })
 
         it('should set activePresetId to the preset id', () => {
@@ -182,15 +190,13 @@ describe('useSequencerStore', () => {
             expect(store.state.activePresetId).toBeNull()
         })
 
-        it('should restore bpm, effects and currentStep to defaults', () => {
+        it('should restore bpm and currentStep to defaults', () => {
             const store = useSequencerStore()
             store.applyPreset(MINIMAL_PRESET, MINIMAL_AMBIANCE)
 
             store.resetPreset()
 
             expect(store.state.bpm).toBe(120)
-            expect(store.state.effects.reverbWet).toBe(0.2)
-            expect(store.state.effects.delayWet).toBe(0.1)
             expect(store.state.currentStep).toBe(-1)
         })
     })
@@ -200,36 +206,36 @@ describe('useSequencerStore', () => {
             const store = useSequencerStore()
             store.applyPreset(MINIMAL_PRESET, MINIMAL_AMBIANCE)
 
-            store.toggleStep('kick', 0)
+            store.toggleStep('Kick', 0)
 
-            expect(store.state.sequences.find((s) => s.instrumentId === 'kick')!.steps[0].active).toBe(true)
+            expect(store.state.sequences.find((s) => s.name === 'Kick')!.steps[0].active).toBe(true)
         })
 
         it('should toggle a step from true back to false', () => {
             const store = useSequencerStore()
             store.applyPreset(MINIMAL_PRESET, MINIMAL_AMBIANCE)
-            store.toggleStep('kick', 0)
+            store.toggleStep('Kick', 0)
 
-            store.toggleStep('kick', 0)
+            store.toggleStep('Kick', 0)
 
-            expect(store.state.sequences.find((s) => s.instrumentId === 'kick')!.steps[0].active).toBe(false)
+            expect(store.state.sequences.find((s) => s.name === 'Kick')!.steps[0].active).toBe(false)
         })
 
-        it('should not affect other instruments when toggling one', () => {
+        it('should not affect other tracks when toggling one', () => {
             const store = useSequencerStore()
             store.applyPreset(MINIMAL_PRESET, MINIMAL_AMBIANCE)
 
-            store.toggleStep('kick', 3)
+            store.toggleStep('Kick', 3)
 
-            const bass = store.state.sequences.find((s) => s.instrumentId === 'bass')
+            const bass = store.state.sequences.find((s) => s.name === 'Bass')
             expect(bass!.steps.every((s) => s.active === false)).toBe(true)
         })
 
-        it('should do nothing when instrumentId does not exist', () => {
+        it('should do nothing when track name does not exist', () => {
             const store = useSequencerStore()
             store.applyPreset(MINIMAL_PRESET, MINIMAL_AMBIANCE)
 
-            store.toggleStep('unknown', 0)
+            store.toggleStep('Unknown', 0)
 
             store.state.sequences.forEach((seq) => {
                 expect(seq.steps.every((s) => s.active === false)).toBe(true)
@@ -242,41 +248,39 @@ describe('useSequencerStore', () => {
             const store = useSequencerStore()
             store.applyPreset(MINIMAL_PRESET, MINIMAL_AMBIANCE)
 
-            store.setStepNote('bass', 2, 'F#2')
+            store.setStepNote('Bass', 2, 'F#2')
 
-            const step = store.state.sequences.find((s) => s.instrumentId === 'bass')!.steps[2]
-            expect(step.note).toBe('F#2')
+            expect(store.state.sequences.find((s) => s.name === 'Bass')!.steps[2].note).toBe('F#2')
         })
 
         it('should allow clearing a note override with undefined', () => {
             const store = useSequencerStore()
             store.applyPreset(MINIMAL_PRESET, MINIMAL_AMBIANCE)
-            store.setStepNote('bass', 2, 'F#2')
+            store.setStepNote('Bass', 2, 'F#2')
 
-            store.setStepNote('bass', 2, undefined)
+            store.setStepNote('Bass', 2, undefined)
 
-            const step = store.state.sequences.find((s) => s.instrumentId === 'bass')!.steps[2]
-            expect(step.note).toBeUndefined()
+            expect(store.state.sequences.find((s) => s.name === 'Bass')!.steps[2].note).toBeUndefined()
         })
     })
 
     describe('setInstrumentVolume / setInstrumentDecay', () => {
-        it('should update volume for the matching instrument', () => {
+        it('should update volume for the matching track', () => {
             const store = useSequencerStore()
             store.applyPreset(MINIMAL_PRESET, MINIMAL_AMBIANCE)
 
-            store.setInstrumentVolume('bass', -6)
+            store.setInstrumentVolume('Bass', -6)
 
-            expect(store.state.sequences.find((s) => s.instrumentId === 'bass')!.volume).toBe(-6)
+            expect(store.state.sequences.find((s) => s.name === 'Bass')!.volume).toBe(-6)
         })
 
-        it('should update decay for the matching instrument', () => {
+        it('should update decay for the matching track', () => {
             const store = useSequencerStore()
             store.applyPreset(MINIMAL_PRESET, MINIMAL_AMBIANCE)
 
-            store.setInstrumentDecay('kick', 0.8)
+            store.setInstrumentDecay('Kick', 0.8)
 
-            expect(store.state.sequences.find((s) => s.instrumentId === 'kick')!.decay).toBe(0.8)
+            expect(store.state.sequences.find((s) => s.name === 'Kick')!.decay).toBe(0.8)
         })
     })
 })

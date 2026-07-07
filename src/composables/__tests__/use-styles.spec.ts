@@ -70,16 +70,6 @@ describe('useStyles', () => {
             expect(store.state.bpm).toBe(dubstepBpm)
         })
 
-        it('should apply dubstep effects', () => {
-            const store = useSequencerStore()
-            const { applyStyle } = useStyles()
-
-            applyStyle('dubstep')
-
-            expect(store.state.effects.reverbWet).toBe(0.5)
-            expect(store.state.effects.delayWet).toBe(0.6)
-        })
-
         it('should set activePresetId after applying', () => {
             const { applyStyle, activePresetId } = useStyles()
 

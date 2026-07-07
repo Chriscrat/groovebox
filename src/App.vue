@@ -24,7 +24,6 @@
                     @play="engine.play"
                     @stop="engine.stop"
                 />
-                <EffectsPanel />
             </div>
         </div>
 
@@ -41,7 +40,6 @@
     import StartOverlay from './components/StartOverlay.vue';
     import TransportControls from './components/TransportControls.vue';
     import SequencerGrid from './components/SequencerGrid.vue';
-    import EffectsPanel from './components/EffectsPanel.vue';
     import StyleSelector from './components/StyleSelector.vue';
 
     const store = useSequencerStore();

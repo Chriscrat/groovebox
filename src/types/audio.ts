@@ -12,11 +12,6 @@ export interface Step<TNote extends string = string> {
     note?: TNote;
 }
 
-export interface EffectsState {
-    reverbWet: number;
-    delayWet: number;
-}
-
 /**
  * Describes a sampler instrument as defined in a preset ambiance.
  * TNote constrains which sample notes are valid — differs freely between ambiances.
@@ -83,7 +78,6 @@ export interface StylePreset {
     id: string;
     name: string;
     bpm: number;
-    effects: EffectsState;
     ambiances: Ambiance[];
 }
 
@@ -93,7 +87,6 @@ export interface SequencerState {
     isPlaying: boolean;
     isAudioReady: boolean;
     currentStep: number;
-    effects: EffectsState;
     activePresetId: string | null;
     activeAmbianceId: string | null;
 }

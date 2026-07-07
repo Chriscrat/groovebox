@@ -35,10 +35,6 @@ export const useSequencerStore = defineStore('sequencer', () => {
         isPlaying: false,
         isAudioReady: false,
         currentStep: -1,
-        effects: {
-            reverbWet: 0.2,
-            delayWet: 0.1,
-        },
         activePresetId: null,
         activeAmbianceId: null,
     });
@@ -83,18 +79,8 @@ export const useSequencerStore = defineStore('sequencer', () => {
         seq.decay = value;
     }
 
-    function setReverbWet(value: number): void {
-        state.effects.reverbWet = value;
-    }
-
-    function setDelayWet(value: number): void {
-        state.effects.delayWet = value;
-    }
-
     function applyPreset(preset: StylePreset, ambiance: Ambiance): void {
         setBpm(preset.bpm);
-        setReverbWet(preset.effects.reverbWet);
-        setDelayWet(preset.effects.delayWet);
         state.sequences = ambiance?.tracks.map(createSequence);
         setCurrentStep(-1);
         state.activePresetId = preset.id;
@@ -103,8 +89,6 @@ export const useSequencerStore = defineStore('sequencer', () => {
 
     function resetPreset(): void {
         setBpm(120);
-        setReverbWet(0.2);
-        setDelayWet(0.1);
         state.sequences = [];
         setCurrentStep(-1);
         state.activePresetId = null;
@@ -121,8 +105,6 @@ export const useSequencerStore = defineStore('sequencer', () => {
         setCurrentStep,
         setInstrumentVolume,
         setInstrumentDecay,
-        setReverbWet,
-        setDelayWet,
         applyPreset,
         resetPreset,
     };
